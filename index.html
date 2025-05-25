@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <title>আমি আয়েশা, আমি একটা গরু!</title>
+  <style>
+    body {
+      background-color: #fff7e6;
+      font-family: "Siyam Rupali", sans-serif;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+    }
+    h1 {
+      color: #ff3399;
+      font-size: 40px;
+    }
+    h2 {
+      color: #ff6600;
+      font-size: 28px;
+    }
+    p {
+      font-size: 20px;
+      color: #333;
+      margin: 20px;
+    }
+    .goru-img {
+      width: 200px;
+      border-radius: 20px;
+      margin-top: 20px;
+      display: none;
+    }
+    .box {
+      background-color: #ffe0ec;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+    .welcome-text {
+      font-size: 30px;
+      color: #6600cc;
+      margin: 20px 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- গরুর ডাক অডিও -->
+  <audio id="cowSound" src="https://www.soundjay.com/animals/cow-moo1.mp3" preload="auto"></audio>
+
+  <div id="welcome"></div>
+
+  <h1 style="display: none;" id="main-title">আমি আয়েশা</h1>
+  <h2 style="display: none;" id="sub-title">আর হ্যাঁ, আমি একটা গরু!</h2>
+
+  <img class="goru-img" id="goru-img" src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg" alt="গরু আয়েশা">
+
+  <div class="box" id="box1">
+    <p>আমার একটাই লক্ষ্য — জার্মান যাওয়া আর একটা কিউট জার্মান পোলা বিয়ে করা।</p>
+    <p>কিন্তু একটা সমস্যা আছে...</p>
+    <p><strong>আমি আয়েশা</strong> যদি রাফিনের জন্য একটা জোস গার্লফ্রেন্ড খুজে না দেই, তাহলে আমার বিয়ে কোনদিনও হবে না!</p>
+  </div>
+
+  <div class="box" id="box2">
+    <p>আমার প্রিয় উক্তি:</p>
+    <p><em>“গরু হইলেও, ড্রিম বড়!”</em></p>
+  </div>
+
+  <script>
+    const messages = [
+      "আশা করো প্রস্তুত আছো...",
+      "কার জন্য?",
+      "আয়েশার জন্য!",
+      "আর সে কি?",
+      "আয়েশা একটা গরু!"
+    ];
+
+    let index = 0;
+    const welcomeDiv = document.getElementById("welcome");
+    const cowSound = document.getElementById("cowSound");
+
+    function showNextMessage() {
+      if (index < messages.length) {
+        const msg = document.createElement("div");
+        msg.className = "welcome-text";
+        msg.textContent = messages[index];
+        welcomeDiv.appendChild(msg);
+        index++;
+        setTimeout(showNextMessage, 1000);
+      } else {
+        cowSound.play();  // গরুর ডাক প্লে করো
+        document.getElementById("main-title").style.display = "block";
+        document.getElementById("sub-title").style.display = "block";
+        document.getElementById("goru-img").style.display = "block";
+        document.getElementById("box1").style.display = "block";
+        document.getElementById("box2").style.display = "block";
+      }
+    }
+
+    window.onload = showNextMessage;
+  </script>
+
+</body>
+</html>
